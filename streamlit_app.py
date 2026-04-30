@@ -1,7 +1,13 @@
 import streamlit as st
 import pandas as pd
 from sklearn.linear_model import LinearRegression
+import pickle
 
+@st.cache_resource
+def load_model():
+    return pickle.load(open("model.pkl", "rb"))
+
+model = load_model()
 # Load data
 df = pd.read_csv("student_data.csv")
 
@@ -15,8 +21,6 @@ X = df[[
 ]]
 y = df["FinalMarks"]
 
-model = LinearRegression()
-model.fit(X, y)
 
 st.title("🎓 Student Performance Predictor")
 

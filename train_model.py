@@ -30,20 +30,7 @@ model.fit(X_train, y_train)
 score = model.score(X_test, y_test)
 print("Model Accuracy (R² score):", score)
 
-sample = pd.DataFrame([{
-    "StudyHours": 7,
-    "Attendance": 90,
-    "PreviousMarks": 80,
-    "SleepHours": 7,
-    "GamingHours": 1,
-    "SportsHours": 1
-}])
-
-prediction = model.predict(sample)
-
-predicted_marks = max(0, min(100, prediction[0]))
-print("Predicted Marks:", predicted_marks)
-# Save the trained model
+# Save model
 with open("model.pkl", "wb") as f:
     pickle.dump(model, f)
 
